@@ -21,3 +21,10 @@ class DeleteStockEvent extends StocklistEvent {
   final int index;
   DeleteStockEvent(this.index);
 }
+
+
+//event for bottom navbar change
+class BottomNavChangeEvent extends StocklistEvent{
+  final int index;
+  BottomNavChangeEvent(this.index);
+}

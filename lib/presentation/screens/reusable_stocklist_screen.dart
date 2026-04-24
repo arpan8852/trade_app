@@ -22,72 +22,88 @@ class ReusableStocklistScreen extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back),
           ),
-
-          title: const Text("Edit Watchlist 1"),
+          title: BlocBuilder<StocklistBloc, StocklistState>(
+            builder: (context, state) {
+              return Text("Edit ${state.watchlists[state.selectedIndex]}");
+            },
+          ),
+          // title: const Text("Edit Watchlist 1"),
         ),
         body: BlocBuilder<StocklistBloc, StocklistState>(
           builder: (context, state) {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(6),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade300,
-                          blurRadius: 6,
-                          offset: const Offset(0, 2), // subtle bottom shadow
-                          spreadRadius: 1,
-                        ),
-                      ],
+            if (state.selectedIndex == 0) {
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Text(
-                            'Watchlist 1',
-                            style: TextStyle(fontWeight: FontWeight.w500),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(6),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            blurRadius: 6,
+                            offset: const Offset(0, 2), // subtle bottom shadow
+                            spreadRadius: 1,
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.edit),
-                        ),
-                      ],
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Watchlist 1',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.edit),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: ReoderableStocklistWidget(
-                    itemBuilder: (item, index) {
-                      return EditStocklistWidget(
-                        stocklistModel: item,
-                        onDelete: () {
-                          context.read<StocklistBloc>().add(
-                            DeleteStockEvent(index),
-                          );
-                        },
-                      );
-                    },
-                    items: state.stockList,
-                    onReorderList: (oldIndex, newIndex) {
-                      context.read<StocklistBloc>().add(
-                        ReorderStockListEvent(oldIndex, newIndex),
-                      );
-                    },
+                  Expanded(
+                    child: ReoderableStocklistWidget(
+                      itemBuilder: (item, index) {
+                        return EditStocklistWidget(
+                          stocklistModel: item,
+                          onDelete: () {
+                            context.read<StocklistBloc>().add(
+                              DeleteStockEvent(index),
+                            );
+                          },
+                        );
+                      },
+                      items: state.stockList,
+                      onReorderList: (oldIndex, newIndex) {
+                        context.read<StocklistBloc>().add(
+                          ReorderStockListEvent(oldIndex, newIndex),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
-            );
+                ],
+              );
+            } else if (state.selectedIndex == 1) {
+        
+        return const Center(
+          child: Text("No data yet on Watchlist 5"),
+        );
+      } else {
+       
+        return const Center(
+          child: Text("No data yet on Watchlist 6"),
+        );
+      }
           },
         ),
       ),

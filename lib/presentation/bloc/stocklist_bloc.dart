@@ -13,6 +13,7 @@ class StocklistBloc extends Bloc<StocklistEvent, StocklistState> {
     on<ReorderStockListEvent>(_onReorderStockList);
 
     on<DeleteStockEvent>(_onDeleteStockEvent);
+    on<BottomNavChangeEvent>(_onBottomNavChangeEvent);
   }
 
   //fetch stocklist
@@ -63,4 +64,10 @@ class StocklistBloc extends Bloc<StocklistEvent, StocklistState> {
     updatedList.removeAt(event.index);
     emit(state.copywith(stockList: updatedList));
   }
+
+ 
+ void _onBottomNavChangeEvent(BottomNavChangeEvent event,Emitter<StocklistState> emit){
+  emit(state.copywith(selectedNavIndex: event.index));
+ }
+
 }
