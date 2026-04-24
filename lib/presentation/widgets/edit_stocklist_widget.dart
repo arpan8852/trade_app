@@ -14,18 +14,26 @@ class EditStocklistWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.drag_handle),
-              const SizedBox(width: 10),
-              Expanded(child: Text(stocklistModel.stockName,style: const TextStyle(color: Colors.grey),)),
+              Row(
+                children: [
+                  const Icon(Icons.drag_handle),
+                  const SizedBox(width: 10),
+                  Text(
+                    stocklistModel.stockName,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
               IconButton(icon: const Icon(Icons.delete), onPressed: onDelete),
             ],
           ),
         ),
-       
-      Divider(thickness: 1, height: 1, color: Colors.grey.shade300),
+
+        Divider(thickness: 1, height: 1, color: Colors.grey.shade300),
       ],
     );
   }

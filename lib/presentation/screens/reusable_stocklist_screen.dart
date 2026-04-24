@@ -94,17 +94,54 @@ class ReusableStocklistScreen extends StatelessWidget {
                 ],
               );
             } else if (state.selectedIndex == 1) {
-        
-        return const Center(
-          child: Text("No data yet on Watchlist 5"),
-        );
-      } else {
-       
-        return const Center(
-          child: Text("No data yet on Watchlist 6"),
-        );
-      }
+              return const Center(child: Text("No data yet on Watchlist 5"));
+            } else {
+              return const Center(child: Text("No data yet on Watchlist 6"));
+            }
           },
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  debugPrint("edit watchlist btn tapped");
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.black),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(child: Text("Edit other watchlists")),
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  debugPrint("edit watchlist btn tapped");
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Save watchlists",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
